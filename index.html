@@ -12,13 +12,6 @@
    <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
 </script>
-<script type="text/javascript">
-   (function(){
-      emailjs.init({
-        publicKey: "LCKgD-GdnW_wWqjqh",
-      });
-   })();
-</script>
 <body>
    <header class="header">
       <a href="#" class="logo">OLEGS</a>
@@ -48,7 +41,7 @@
          data-aos-duration="1000">
             <a href="https://github.com/OlegsCulicoks"><i class="fa-brands fa-github"></i></a>
             <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.instagram.com/idkolegs/"><i class="fa-brands fa-instagram"></i></a>
          </div>
 
          <div class="home-button" data-aos="zoom-in" data-aos-duration="1000">
@@ -269,24 +262,24 @@
          <div class="row">
             <div class="contact-left">
                <h1 class="sub-title">Contact Me</h1>
-               <p><i class="fa-solid fa-paper-plane"></i>culicoksolegs@gmail.com</p>
+               <p><i class="fa-solid fa-paper-plane"></i>ipa21.o.culicoks@vtdt.edu.lv</p>
                <p><i class="fa-solid fa-phone"></i> +371 28015570</p>
                <div class="social-icon">
-                  <a href="#"><i class="fa-brands fa-github"></i></a>
+                  <a href="https://github.com/OlegsCulicoks"><i class="fa-brands fa-github"></i></a>
                   <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                  <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                  <a href="https://www.instagram.com/idkolegs/"><i class="fa-brands fa-instagram"></i></a>
                </div>
                <button class="btn-cv">
-                  <a href="#">Download CV</a>
+                  <a href="/assets/files/Oļegs_Čuličoks_CV.pdf" download>Download CV</a>
                </button>
             </div>
             <div class="contact-right">
-               <form action="">
+               <form id="SendEmail" >
                   <input type="text" id="name" name="name" placeholder="Your Name" required>
                   <input type="email" id="email" name="email" placeholder="Your Email" required>
                   <textarea name="subject" id="subject" placeholder="Subject"></textarea>
                   <textarea name="message" id="message" rows="4" placeholder="Your Message"></textarea>
-                  <button onclick="sendMail()" class="button">
+                  <button type="submit" class="button">
                      <p>Submit</p>
                   </button>
                </form>
@@ -309,10 +302,48 @@
          <li><a href="#">Privacy Policy</a></li>
       </ul>
       <p class="copyright">
-         © OLEGS | All Right Reserved
+         © OLEGS | All Right Reserved 2024
       </p>
    </footer>
 
+   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+      <script>
+        
+        emailjs.init("LCKgD-GdnW_wWqjqh");
+
+        
+        function sendEmail(event) {
+          event.preventDefault();
+          const form = document.getElementById("SendEmail");
+          const formData = new FormData(form);
+
+          const name = formData.get("name");
+          const email = formData.get("email");
+          const subject = formData.get("subject");
+          const message = formData.get("message");
+
+          
+
+          
+          emailjs.sendForm("service_0yirtxt", "template_iczogjr", form).then(
+            function (response) {
+              console.log(
+                "Email successfully sent!",
+                response.status,
+                response.text
+              );
+              form.reset(); 
+            },
+            function (error) {
+              console.error("Email sending failed:", error);
+            
+            }
+          );
+        }
+        const form = document.getElementById("SendEmail");
+        form.addEventListener("submit", sendEmail);
+      </script>
+      
    <script src="/assets/js/script.js"></script>
 
    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
